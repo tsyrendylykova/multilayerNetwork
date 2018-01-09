@@ -5,10 +5,74 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MultilayerNetworkVisialization"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
+        Title="Multilayer Network Visualization" Height="350" Width="525">
     <Grid>
-        <Button x:Name="button" Content="Button" HorizontalAlignment="Left" Height="33" Margin="50,50,0,0" VerticalAlignment="Top" Width="120"/>
-        <Viewbox HorizontalAlignment="Left" Height="85" Margin="170,145,0,0" VerticalAlignment="Top" Width="159"/>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="90"/>
+            <RowDefinition Height="25"/>
+            <RowDefinition Height="25"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="1*"/>
+        </Grid.ColumnDefinitions>
+
+        <!-->
+            <Border BorderBrush="{StaticResource Foreground}" BorderThickness="2" Grid.ColumnSpan="2" Grid.Row="3"/>
+        <!-->
+        <Border Background="Beige" Grid.ColumnSpan="2">
+            <StackPanel Orientation="Vertical">
+                <TextBlock x:Name="TextBlockNetwork"
+                   Height="70" 
+                   Width="350" 
+                   FontSize="15"
+                   FontWeight="Medium"
+                   Margin="20,20,10,0">
+                   <TextBlock.Text>
+                        <MultiBinding StringFormat="Multilayer Network «{0}-{1}» is created!">
+                            <Binding Path="FirstLayer"/>
+                            <Binding Path="SecondLayer"/>
+                        </MultiBinding>
+                    </TextBlock.Text>
+                </TextBlock>
+            </StackPanel>
+        </Border>
+
+        <TextBox x:Name="textBox_layer1" 
+                 Grid.Row="1"
+                 HorizontalAlignment="Left" 
+                 Height="30" 
+                 TextWrapping="Wrap" 
+                 Text="{Binding FirstLayer, Mode=TwoWay }" 
+                 VerticalAlignment="Top" 
+                 Width="130"/>
+        <TextBox x:Name="textBox_layer2" 
+            Grid.Row="2"
+            HorizontalAlignment="Left" 
+            Height="30" 
+            TextWrapping="Wrap" 
+            Text="{Binding SecondLayer, Mode=TwoWay }" 
+            VerticalAlignment="Top" 
+            Width="130"/>
+
+        <Grid Name="gridMenu" Grid.Column="1" Margin="10" Grid.Row="3" >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="40" />
+                <RowDefinition Height="50" />
+                <RowDefinition Height="50" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="60" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Border Background="LightGray" Grid.Row="1" Grid.Column="1" Grid.RowSpan="3" />
+            <Button Name="butonHideUnhide" Grid.Row="1" Grid.Column="1" Margin="0,0,0,5" Content="Hide/Unhide" Click="butonHideUnhide_Click" />
+            <Button Name="buton1" Grid.Row="2" Grid.Column="1" Content="button1" />
+            <Button Name="buton5" Grid.Row="3" Grid.Column="1" Content="Exit" Click="butonExit_Click_1" />
+            <Button Name="butonMenu" Grid.Row="3" Grid.Column="0" Content=">" Click="butonMenu_Click" Margin="0,0,10,0" />
+        </Grid>
 
     </Grid>
 </Window>
